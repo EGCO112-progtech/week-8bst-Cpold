@@ -124,7 +124,7 @@ void revinOrder( TreeNodePtr treePtr, int tabcount)
    
       }
    for(i=0;i<tabcount;i++) {
-      printf("     ");
+      printf("   ");
     }
       printf("%3d",treePtr->data) ;  //print the value 
       printf("\n");
