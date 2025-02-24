@@ -48,22 +48,33 @@ void insertNode( BST *b, int value ){
 while(!inserted){
    if(t->data >=value){
      /* move/insert to the left*/
-    
-     }
+    if(t->leftPtr){
+      t=t->leftPtr;
+      continue;
+    }
+    t->leftPtr = new_node;
+inserted = 1;
+     
   	 
   }
    else{
 	      /* move/ insert to the right*/
-    
+         if(t->rightPtr){
+            t=t->rightPtr;
+            continue;
+          }
+          t->rightPtr = new_node;
+         inserted = 1;
     }
-	}
+	
    
   }//end while		
   }//end else;
   b->size++;
   }
   
-}//end function
+}
+//end function
 
 
 void inOrder( TreeNodePtr treePtr )
@@ -76,5 +87,53 @@ void inOrder( TreeNodePtr treePtr )
       printf("%3d",treePtr->data) ;  //print the value 
    
       inOrder( treePtr->rightPtr ); //Recursion to the right
+   } // end if                          
+} // end 
+void preOrder( TreeNodePtr treePtr )
+{ 
+   // if tree is not empty, then traverse
+   if ( treePtr != NULL ) {        
+        printf("%3d",treePtr->data) ;  //print the value 
+      preOrder( treePtr->leftPtr ); //Recursion to the left
+ 
+      
+   
+      preOrder( treePtr->rightPtr ); //Recursion to the right
+   } // end if                          
+} // end 
+void postOrder( TreeNodePtr treePtr )
+{ 
+   // if tree is not empty, then traverse
+   if ( treePtr != NULL ) {        
+        
+        postOrder( treePtr->leftPtr ); //Recursion to the left
+ 
+      
+   postOrder( treePtr->rightPtr ); //Recursion to the right
+        printf("%3d",treePtr->data) ;  //print the value 
+   } // end if                          
+} // end 
+void revinOrder( TreeNodePtr treePtr, int tabcount)
+{ 
+   int i;
+   // if tree is not empty, then traverse
+   if ( treePtr != NULL ) {      
+      if  ( treePtr->rightPtr != NULL ){
+         //tabcount++; //Recursion to the right
+         revinOrder( treePtr->rightPtr, tabcount+1);
+   
+      }
+   for(i=0;i<tabcount;i++) {
+      printf("     ");
+    }
+      printf("%3d",treePtr->data) ;  //print the value 
+      printf("\n");
+      if  ( treePtr->leftPtr != NULL ){
+         //tabcount++; //Recursion to the left
+revinOrder( treePtr->leftPtr, tabcount+1);
+
+      }
+
+      
    } // end if                          
 } // end 
